@@ -22,10 +22,10 @@ $pdo->query(
     `lastname` varchar (48) DEFAULT NULL
 } ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
 
-ALTER TABLE `users`
-    ADD PRIMARY KEY (`ID`);
+// ALTER TABLE `users`
+//     ADD PRIMARY KEY (`ID`);
 
 
-ALTER TABLE `users`
-    MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT 3;
-COMMIT;
+// ALTER TABLE `users`
+//     MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT 3;
+// COMMIT;
