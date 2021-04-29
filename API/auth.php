@@ -18,12 +18,27 @@ if(count($_POST)>0){
 		
 	}
 }
+switch($_SERVER['REQUEST_METHOD']){
+	case 'GET':
+		if (isset($_SESSION['user/ID']){
+			die(json_encode(['status'=>1,'message'=>'signed in']));
+		}else{
+			die(json_encode(['status'=>-1,'message'=>'signed out']));
+		}
+		break;
+	case 'POST': 
+		break;
+	case 'PUT':
+		break;
+	case 'DELETE':
+		break;
+}
 // if($_SERVER['REQUEST_METHOD'] == 'GET'){
-// 	if (isset($_SESSION['user/ID']){
-// 		die(json_encode(['status'=>1,'message'=>'signed in']));
-// 	}else{
-// 		die(json_encode(['status'=>-1,'message'=>'signed out']));
-// 	}
+	// if (isset($_SESSION['user/ID']){
+	// 	die(json_encode(['status'=>1,'message'=>'You have been signed out']));
+	// }else{
+	// 	die(json_encode(['status'=>-1,'message'=>'You have been signed out']));
+	// }
 // }	
 die(json_encode(['status'=>-1,'message'=>'This route is invalid']));
 
