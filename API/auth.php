@@ -32,7 +32,7 @@ if(count($_POST)>0){
 // 		break;
 // 	case 'DELETE':
 // 		break;
-}
+//}
 // if($_SERVER['REQUEST_METHOD'] == 'GET'){
 	// if (isset($_SESSION['user/ID']){
 	// 	die(json_encode(['status'=>1,'message'=>'You have been signed out']));
