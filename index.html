@@ -7,7 +7,8 @@
 	<body>
 		<div class="container">
 		<h1>The Art Market</h1>
-		<h3><a href="auth.html">Sign in/Sign up</a></h3>
+		<h3><a href="auth.html">Sign in/up</a></h3>
+		<h3><a id="signout" href="auth.php?action=signout"></a><h3></h3>
 		<div id="posts">
 		</div>
 		<script src="assets/jquery-3.5.1.min.js"></script>
@@ -21,7 +22,10 @@
 				$('#posts').append('</div>');
 			});
 			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php',function(data){
-				console.log(data);
+				console.log(data.message);
+				if(data.status==1){
+					$('$signout').text("Sign Out");
+				}
 			});
 		</script>
 		</div>
