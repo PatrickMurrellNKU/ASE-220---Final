@@ -24,7 +24,7 @@ switch($_SERVER['REQUEST_METHOD']){
 
 
 function index($pdo){
-	$stmt=$pdo->prepare('SELECT ID,title FROM post');
+	$stmt=$pdo->prepare('SELECT ID,title,description,link FROM post');
 	$stmt->execute([]);
 	die(json_encode($stmt->fetchAll()));
 }
