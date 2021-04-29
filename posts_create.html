@@ -11,6 +11,9 @@
 			
 			<label>Image Link</title><br />
 			<input type="url" name="link" /><br /><br />
+
+			<label>Author ID</title><br />
+			<input type="number" name="user_ID" value="" /><br /><br />
 			
 			<button type="submit">Create post</button>
 		</form>
@@ -23,7 +26,8 @@
 				var data={
 					title:$('form#create input[name=title]').val(),
 					description:$('form#create textarea[name=description]').val(),
-					link:$('form#create input[name=link]').val()
+					link:$('form#create input[name=link]').val(),
+					user_ID:$('form#create input[name=user_ID]').val()
 				};
 				console.log(data);
 				$.ajax({

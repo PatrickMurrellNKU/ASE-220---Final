@@ -1,5 +1,5 @@
 <?php
-require('lib_session.php');
+require('API/lib_session.php');
 if(!isset($_SESSION['user/ID'])){
 	echo 'This page is for registered users only. Please <a href="auth.html">Sign in</a>.';
 	die();

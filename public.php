@@ -1,5 +1,5 @@
 <?php
-require('lib_session.php');
+require('API/lib_session.php');
 ?>
 <!doctype html>
 <html lang="en">
