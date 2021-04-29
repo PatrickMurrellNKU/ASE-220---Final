@@ -101,11 +101,13 @@
 					password:$('form#signup input[name=password]').val(),
 					action:'signup'
 				};
+				console.log(data);
 				$.ajax({
 					type:'POST',
 					url:'https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php',
 					data:data,
 					success: function(output, status, xhr) { 
+						console.log("complete");
 						console.log(output);
 						console.log(status);
 						console.log(xhr);

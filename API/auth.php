@@ -75,6 +75,7 @@ function signin($email,$password){
 
 function signup($firstname,$lastname,$email,$password){
 	require(__DIR__.'/lib_db.php');
+	die(json_encode(['status'=>1,'firstname'=>$firstname,'lastname'=>$lastname]));
 	// Check if they already have an account
 	$query=$pdo->prepare('SELECT ID FROM users WHERE email=?');
 	$query->execute([$email]);
