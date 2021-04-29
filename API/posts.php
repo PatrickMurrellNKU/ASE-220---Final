@@ -3,6 +3,7 @@ require(__DIR__.'/lib_db.php');
 require(__DIR__.'/lib_session.php');
 header('Content-type: application/json');
 
+
 switch($_SERVER['REQUEST_METHOD']){
 	case 'GET':
 		if(isset($_GET['id'])) detail($pdo);
@@ -23,13 +24,13 @@ switch($_SERVER['REQUEST_METHOD']){
 
 
 function index($pdo){
-	$stmt=$pdo->prepare('SELECT ID,title,description,link,user_ID,current_bid FROM post');
+	$stmt=$pdo->prepare('SELECT ID,title,link FROM post');
 	$stmt->execute([]);
 	die(json_encode($stmt->fetchAll()));
 }
 
 function detail($pdo){
-	$stmt = $pdo->prepare('SELECT ID,title,description,link,user_ID,current_bid FROM post WHERE ID=?');
+	$stmt = $pdo->prepare('SELECT ID,title,description,link,user_ID FROM post WHERE ID=?');
 	$stmt->execute([$_GET['id']]);
 	$post=$stmt->fetch();
 	if(isset($_SESSION['user/ID']) && ($post['user_ID']==$_SESSION['user/ID'] || $_SESSION['user/is_admin']==1)) $post['manage']=1;
@@ -39,10 +40,9 @@ function detail($pdo){
 
 function create($pdo){
 	if(!isset($_SESSION['user/ID'])) die(json_encode(['status'=>-1,'message'=>'This page is for registered users only. Please <a href="auth.php">Sign in</a>.']));
-	die(json_encode(json_decode($pdo)))
 	if(count($_POST)>0){
 		$stmt = $pdo->prepare('INSERT INTO post (title, description, link, user_ID) VALUES (?,?,?,?,?)');
-		$stmt->execute([$_POST['title'],$_POST['description'],str_replace('T',' '),$_POST['link'],$_SESSION['user/ID']]);
+		$stmt->execute([$_POST['title'],$_POST['description'],$_POST['link'],$_SESSION['user/ID']]);
 		die(json_encode(['status'=>1,'message'=>'The message has been saved.']));
 	}
 }
@@ -50,7 +50,7 @@ function create($pdo){
 function edit($pdo,$_PUT){
 	if(count($_PUT)>0){
 		$stmt = $pdo->prepare('UPDATE post SET title = ?, description = ?, link = ?, user_ID =? WHERE post.ID =?');
-		$stmt->execute([$_PUT['title'],$_PUT['description'],str_replace('T',' '),$_PUT['link'],$_PUT['user_ID'],$_PUT['ID']]);
+		$stmt->execute([$_PUT['title'],$_PUT['description'],$_PUT['link'],$_PUT['user_ID'],$_PUT['ID']]);
 		die(json_encode(['status'=>1,'message'=>'Your data have been saved']));
 	}
 	die(json_encode(['status'=>-1,'message'=>'Your data were not saved']));
