@@ -65,7 +65,7 @@ function signin($email,$password){
 	}
 }
 
-function signup($email,$password){
+function signup($firstname,$lastname,$email,$password){
 	require(__DIR__.'/lib_db.php');
 	// Check if they already have an account
 	$query=$pdo->prepare('SELECT ID FROM users WHERE email=?');
@@ -76,7 +76,7 @@ function signup($email,$password){
 	}
 	//Add the user to the database
 	$query=$pdo->prepare('INSERT INTO users(email,password) VALUES(?,?)');
-	$query->execute([$email,password_hash($password, PASSWORD_DEFAULT)]);
+	$query->execute([$firstname,$lastname,$email,password_hash($password, PASSWORD_DEFAULT)]);
 	echo 'Your account has been created. Please, sign in.';
 	//Show a message
 }
