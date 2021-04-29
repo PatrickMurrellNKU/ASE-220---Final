@@ -11,7 +11,8 @@ if(isset($_SESSION['user/ID'])) {
 	'user_ID'=>$_SESSION['user/ID'],
 	'is_admin'=>$_SESSION['user/is_admin'],
 	'firstname'=>$_SESSION['user/firstname'],
-	'is_admin'=>$_SESSION['user/is_admin']
+	'is_admin'=>$_SESSION['user/is_admin'],
+	'lastname'=>$_SESSION['user/lastname'],
 	]));
 	//die(json_encode(['status'=>-1,'message'=>'The user is already logged.','user_ID'=>$_SESSION['user/ID'],'is_admin'=>$_SESSION['user/is_admin']));
 }
