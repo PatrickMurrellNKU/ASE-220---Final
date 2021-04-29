@@ -9,9 +9,7 @@
 			<label>Description</title><br />
 			<textarea name="description"></textarea><br /><br />
 			
-			
-			<label>Date</title><br />
-			<input type="datetime-local" name="date" /><br /><br />
+	
 			
 			<label>Image Link</title><br />
 			<input type="url" name="link" /><br /><br />
@@ -27,7 +25,6 @@
 				var data={
 					title:$('form#create input[name=title]').val(),
 					description:$('form#create textarea[name=description]').val(),
-					date:$('form#create input[name=date]').val(),
 					link:$('form#create input[name=link]').val()
 				};
 				console.log(data);

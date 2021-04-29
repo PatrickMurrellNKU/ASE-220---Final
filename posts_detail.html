@@ -9,7 +9,6 @@
 	<body>
 		<div class="container">
 			<h1 id="title"></h1>
-			<p id="date"></p>
 			<p id="author"></p>
 			<p id="description"></p>
 			<a id="btn-edit" class="d-none manage" href="#">Edit this post</a>
@@ -22,7 +21,6 @@
 			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/posts.php?id='+findGetParameter('id'),function(data){
 				if(data.title==null) window.location.href='index.html';
 				$('#title').text(data.title);
-				$('#date').text('Published on: '+data.date);
 				$('#author').text("Published by: "+data.user_ID);
 				$('#description').text(data.description);
 				if(data.manage==1){
