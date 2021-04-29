@@ -18,13 +18,13 @@ if(count($_POST)>0){
 		
 	}
 }
-if($_SERVER['REQUEST_METHOD'] == 'GET'){
-	if (isset($_SESSION['user/ID']){
-		die(json_encode(['status'=>1,'message'=>'signed in']));
-	}else{
-		die(json_encode(['status'=>-1,'message'=>'signed out']));
-	}
-}	
+// if($_SERVER['REQUEST_METHOD'] == 'GET'){
+// 	if (isset($_SESSION['user/ID']){
+// 		die(json_encode(['status'=>1,'message'=>'signed in']));
+// 	}else{
+// 		die(json_encode(['status'=>-1,'message'=>'signed out']));
+// 	}
+// }	
 die(json_encode(['status'=>-1,'message'=>'This route is invalid']));
 
 
@@ -47,7 +47,7 @@ function signin($email,$password){
 	}
 }
 
-function signup($firstname,$lastname,$email,$password){
+function signup($email,$password){
 	require(__DIR__.'/lib_db.php');
 	// Check if they already have an account
 	$query=$pdo->prepare('SELECT ID FROM users WHERE email=?');
@@ -57,8 +57,8 @@ function signup($firstname,$lastname,$email,$password){
 		return;
 	}
 	//Add the user to the database
-	$query=$pdo->prepare('INSERT INTO users(firstname,lastname,email,password) VALUES(?,?,?,?)');
-	$query->execute([$firstname,$lastname,$email,password_hash($password, PASSWORD_DEFAULT)]);
+	$query=$pdo->prepare('INSERT INTO users(email,password) VALUES(?,?)');
+	$query->execute([$email,password_hash($password, PASSWORD_DEFAULT)]);
 	echo 'Your account has been created. Please, sign in.';
 	//Show a message
 }
