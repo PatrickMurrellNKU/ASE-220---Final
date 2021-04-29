@@ -22,6 +22,7 @@ if(count($_POST)>0){
 			signin($_POST['email'],$_POST['password']);
 			break;
 		case 'signup':
+			die(json_encode(['status'=>1,'firstname'=>$POST['firstname'],'lastname'=>$POST['lastname']]));
 			signup($POST['firstname'],$POST['lastname'],$_POST['email'],$_POST['password']);
 			break;
 	}
