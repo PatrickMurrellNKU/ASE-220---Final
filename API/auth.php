@@ -83,7 +83,7 @@ function signup($firstname,$lastname,$email,$password){
 		return;
 	}
 	//Add the user to the database
-	$query=$pdo->prepare('INSERT INTO users(email,password) VALUES(?,?)');
+	$query=$pdo->prepare('INSERT INTO users(firstname,lastname,email,password) VALUES(?,?,?,?)');
 	$query->execute([$firstname,$lastname,$email,password_hash($password, PASSWORD_DEFAULT)]);
 	echo 'Your account has been created. Please, sign in.';
 	//Show a message
