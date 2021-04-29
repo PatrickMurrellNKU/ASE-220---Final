@@ -22,9 +22,9 @@
 		<script src="assets/app.js"></script>
 		<script>
 			 
-			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php?id='+findGetParameter('id'),function(data){
-				console.log();
-			});
+			// $.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php?id='+findGetParameter('id'),function(data){
+			// 	console.log();
+			// });
 			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/posts.php?id='+findGetParameter('id'),function(data){
 				if(data.title==null) window.location.href='https://patrick-murrell-ase-220-final.herokuapp.com';
 				console.log(data.current_bid);
