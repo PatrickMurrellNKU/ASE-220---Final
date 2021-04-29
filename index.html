@@ -11,8 +11,8 @@
 		<script src="assets/jquery-3.5.1.min.js"></script>
 		<script>
 			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/posts.php',function(data){
-				console.log(data[i].link);
 				for(i=0;i<data.length;i++){
+					console.log(data[i].link);
 					$('#posts').append('<div><h3><a href="posts_detail.html?id='+data[i].ID+'">'+data[i].title+'</a></h3><img src="'+data[i].link+'" width=500></div>');
 				} 
 			});
