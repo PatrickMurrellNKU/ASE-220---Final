@@ -20,6 +20,9 @@
 					}
 				$('#posts').append('</div>');
 			});
+			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php',function(data){
+				console.log(data);
+			});
 		</script>
 		</div>
 	</body>

@@ -109,6 +109,7 @@
 						if(output.status==1){
 							$('form#signup .alert').removeClass('alert-danger').addClass('alert-success').removeClass('d-none');
 							$('form#signup .alert').text(output.message);
+							window.location="index.html";
 						}else{
 							$('form#signup .alert').addClass('alert-danger').removeClass('d-none');
 							$('form#signup .alert').text(output.message);

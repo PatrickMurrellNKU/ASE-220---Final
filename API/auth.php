@@ -15,8 +15,16 @@ if(count($_POST)>0){
 		case 'signup':
 			signup($POST['firstname'],$POST['lastname'],$_POST['email'],$_POST['password']);
 			break;
+		
 	}
 }
+if(count($GET)>0){
+	if isset($_SESSION['user/ID']){
+		die(json_encode(['status'=>1,'message'=>'signed in']));
+	}else{
+		die(json_encode(['status'=>-1,'message'=>'signed out']));
+	}
+}	
 die(json_encode(['status'=>-1,'message'=>'This route is invalid']));
 
 
