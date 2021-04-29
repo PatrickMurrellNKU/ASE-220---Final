@@ -18,8 +18,8 @@ if(count($_POST)>0){
 		
 	}
 }
-if(count($GET)>0){
-	if isset($_SESSION['user/ID']){
+if($_SERVER['REQUEST_METHOD'] == 'GET'){
+	if (isset($_SESSION['user/ID']){
 		die(json_encode(['status'=>1,'message'=>'signed in']));
 	}else{
 		die(json_encode(['status'=>-1,'message'=>'signed out']));
