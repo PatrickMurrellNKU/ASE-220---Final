@@ -71,7 +71,6 @@
 				var data={
 					email:$('form#signin input[name=email]').val(),
 					password:$('form#signin input[name=password]').val(),
-					firstname:$('form#signin input[name=firstname]').val(),
 					action:'signin'
 				};
 				$.ajax({
@@ -83,6 +82,7 @@
 						if(output.status==1){
 							$('form#signin .alert').removeClass('alert-danger').addClass('alert-success').removeClass('d-none');
 							$('form#signin .alert').text(output.message);
+							window.location.href="https://patrick-murrell-ase-220-final.herokuapp.com";
 						}else{
 							$('form#signin .alert').addClass('alert-danger').removeClass('d-none');
 							$('form#signin .alert').text(output.message);
@@ -107,6 +107,7 @@
 					data:data,
 					success: function(output, status, xhr) { 
 						if(output.status==1){
+							console.log(output)
 							$('form#signup .alert').removeClass('alert-danger').addClass('alert-success').removeClass('d-none');
 							$('form#signup .alert').text(output.message);
 							window.location.href="https://patrick-murrell-ase-220-final.herokuapp.com";

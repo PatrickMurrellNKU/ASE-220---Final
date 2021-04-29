@@ -86,5 +86,6 @@ function signup($firstname,$lastname,$email,$password){
 	$query=$pdo->prepare('INSERT INTO users(firstname,lastname,email,password) VALUES(?,?,?,?)');
 	$query->execute([$firstname,$lastname,$email,password_hash($password, PASSWORD_DEFAULT)]);
 	echo 'Your account has been created. Please, sign in.';
+	die(json_encode(['status'=>1]));
 	//Show a message
 }
