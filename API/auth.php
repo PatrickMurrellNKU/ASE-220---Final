@@ -20,7 +20,7 @@ if(count($_POST)>0){
 }
 switch($_SERVER['REQUEST_METHOD']){
 	case 'GET':
-		if (isset($_SESSION['user/ID']){
+		if (isset($_SESSION['user/ID'])){
 			die(json_encode(['status'=>1,'message'=>'signed in']));
 		}else{
 			die(json_encode(['status'=>-1,'message'=>'signed out']));
