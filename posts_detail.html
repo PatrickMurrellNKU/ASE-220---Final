@@ -30,7 +30,7 @@
 				$('#description').text(data.description);
 				$('#current_bid').text("Current Bid: $"+data.current_bid);
 				$('#link').append('<img src="'+data.link+'" width=500>');
-				if(/*data.manage==1*/true){
+				if(data.manage==1){
 					$('.manage').removeClass('d-none');
 				}
 				console.log($('#btn-edit').attr('href'));
