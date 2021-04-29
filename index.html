@@ -13,7 +13,7 @@
 			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/posts.php',function(data){
 				console.log(data.length);
 				for(i=0;i<data.length;i++){
-					$('#posts').append('<div><h3><a href="posts_detail.html?id='+data[i].ID+'">'+data[i].title+'</a></h3></div>');
+					$('#posts').append('<div><h3><a href="posts_detail.html?id='+data[i].ID+'">'+data[i].title+'</a></h3><img src="'+data[i].link+'" width=500></div>');
 				} 
 			});
 		</script>
