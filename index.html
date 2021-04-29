@@ -27,8 +27,9 @@
 				$('#posts').append('<div class="col-xs-6">');
 					for(i=0;i<data.length;i++){						
 						$('#posts').append('<div><h3>'+data[i].title+'</h3><a href="posts_detail.html?id='+data[i].ID+'"><img src="'+data[i].link+'" width=300></a></div>');
+						console.log("userID "+ userID+ " data.user_ID "+ data.userID)
 						if(userID == data.user_ID){
-							console.log(userID);
+							$('#posts').append('<a href="posts_edit.html?id='+data[i].ID+'">edit post</a>');
 						}
 					}
 				$('#posts').append('</div>');
