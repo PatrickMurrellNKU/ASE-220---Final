@@ -22,8 +22,8 @@
 				$('#posts').append('</div>');
 			});
 			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php',function(data){
-				console.log(data.message);
-				if(data.status==1){
+				console.log(data);
+				if(data.message=='The user is already logged.'){
 					$('$signout').text("Sign Out");
 				}
 			});
