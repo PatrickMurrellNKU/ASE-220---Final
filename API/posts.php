@@ -24,13 +24,13 @@ switch($_SERVER['REQUEST_METHOD']){
 
 
 function index($pdo){
-	$stmt=$pdo->prepare('SELECT ID,title,date FROM posts');
+	$stmt=$pdo->prepare('SELECT ID,title,date FROM post');
 	$stmt->execute([]);
 	die(json_encode($stmt->fetchAll()));
 }
 
 function detail($pdo){
-	$stmt = $pdo->prepare('SELECT ID,title,content,img,user_ID,date FROM posts WHERE ID=?');
+	$stmt = $pdo->prepare('SELECT ID,title,description,link,user_ID,date FROM post WHERE ID=?');
 	$stmt->execute([$_GET['id']]);
 	$post=$stmt->fetch();
 	if(isset($_SESSION['user/ID']) && ($post['user_ID']==$_SESSION['user/ID'] || $_SESSION['user/is_admin']==1)) $post['manage']=1;
@@ -39,29 +39,29 @@ function detail($pdo){
 }
 
 function create($pdo){
-	if(!isset($_SESSION['user/ID'])) die(json_encode(['status'=>-1,'message'=>'This page is for registered users only. Please <a href="auth.php">Sign in</a>.']));
+	//if(!isset($_SESSION['user/ID'])) die(json_encode(['status'=>-1,'message'=>'This page is for registered users only. Please <a href="auth.php">Sign in</a>.']));
 	if(count($_POST)>0){
-		$stmt = $pdo->prepare('INSERT INTO posts (title, content, date, img, user_ID) VALUES (?,?,?,?,?)');
-		$stmt->execute([$_POST['title'],$_POST['content'],str_replace('T',' ',$_POST['date']),$_POST['img'],$_SESSION['user/ID']]);
+		$stmt = $pdo->prepare('INSERT INTO post (title, description, date, link, user_ID) VALUES (?,?,?,?,?)');
+		$stmt->execute([$_POST['title'],$_POST['description'],str_replace('T',' ',$_POST['date']),$_POST['link'],$_SESSION['user/ID']]);
 		die(json_encode(['status'=>1,'message'=>'The message has been saved.']));
 	}
 }
 
 function edit($pdo,$_PUT){
 	if(count($_PUT)>0){
-		$stmt = $pdo->prepare('UPDATE posts SET title = ?, content = ?, date = ?, img = ?, user_ID =? WHERE posts.ID =?');
-		$stmt->execute([$_PUT['title'],$_PUT['content'],str_replace('T',' ',$_PUT['date']),$_PUT['img'],$_PUT['user_ID'],$_PUT['ID']]);
+		$stmt = $pdo->prepare('UPDATE post SET title = ?, description = ?, date = ?, link = ?, user_ID =? WHERE post.ID =?');
+		$stmt->execute([$_PUT['title'],$_PUT['description'],str_replace('T',' ',$_PUT['date']),$_PUT['link'],$_PUT['user_ID'],$_PUT['ID']]);
 		die(json_encode(['status'=>1,'message'=>'Your data have been saved']));
 	}
 	die(json_encode(['status'=>-1,'message'=>'Your data were not saved']));
 }
 
 function delete($pdo,$id){
-	$stmt = $pdo->prepare('SELECT * FROM posts WHERE ID=?');
+	$stmt = $pdo->prepare('SELECT * FROM post WHERE ID=?');
 	$stmt->execute([$id]);
 	$post=$stmt->fetch();
 	if(!isset($_SESSION['user/ID']) || $post['user_ID']!=$_SESSION['user/ID']) die(json_encode(['status'=>-1,'message'=>'You don\'t have the rights for this action']));
-	$stmt = $pdo->prepare('DELETE FROM posts WHERE ID=?');
+	$stmt = $pdo->prepare('DELETE FROM post WHERE ID=?');
 	$stmt->execute([$id]);
 	die(json_encode(['status'=>1,'message'=>'The post has been deleted']));
 }

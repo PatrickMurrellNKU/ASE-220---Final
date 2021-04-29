@@ -36,6 +36,14 @@
 				<form id="signup" method="POST">
 					<input type="hidden" name="action" value="signup" />
 					<div class="form-group">
+						<label>Firstname</label>
+						<input type="firstname" name="firstname" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label>Lastname</label>
+						<input type="lastname" name="lastname" class="form-control" />
+					</div>
+					<div class="form-group">
 						<label>E-mail</label>
 						<input type="email" name="email" class="form-control" />
 					</div>
@@ -68,16 +76,41 @@
 				};
 				$.ajax({
 					type:'POST',
-					url:'https://nku-ase200-1.herokuapp.com/API/auth.php',
+					url:'https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php',
 					data:data,
 					success: function(output, status, xhr) { 
 						if(output.status==1){
 							$('form#signin .alert').removeClass('alert-danger').addClass('alert-success').removeClass('d-none');
 							$('form#signin .alert').text(output.message);
-							window.location='index.html';
 						}else{
 							$('form#signin .alert').addClass('alert-danger').removeClass('d-none');
 							$('form#signin .alert').text(output.message);
+						}
+					}
+				});
+			});
+			$(document).on('submit','#signup',function(e){
+				//tell the browser to ignore the default event handler
+				e.preventDefault();
+				
+				var data={
+					firstname:$('form#signup input[name=firstname]').val(),
+					lastname:$('form#signup input[name=lastname]').val(),
+					email:$('form#signup input[name=email]').val(),
+					password:$('form#signup input[name=password]').val(),
+					action:'signup'
+				};
+				$.ajax({
+					type:'POST',
+					url:'https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php',
+					data:data,
+					success: function(output, status, xhr) { 
+						if(output.status==1){
+							$('form#signup .alert').removeClass('alert-danger').addClass('alert-success').removeClass('d-none');
+							$('form#signup .alert').text(output.message);
+						}else{
+							$('form#signup .alert').addClass('alert-danger').removeClass('d-none');
+							$('form#signup .alert').text(output.message);
 						}
 					}
 				});

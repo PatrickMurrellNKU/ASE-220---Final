@@ -6,15 +6,15 @@
 			<label>Title</title><br />
 			<input type="text" name="title" /><br /><br />
 			
-			<label>Content</title><br />
-			<textarea name="content"></textarea><br /><br />
+			<label>Description</title><br />
+			<textarea name="description"></textarea><br /><br />
 			
 			
 			<label>Date</title><br />
 			<input type="datetime-local" name="date" /><br /><br />
 			
-			<label>Image</title><br />
-			<input type="url" name="img" /><br /><br />
+			<label>Image Link</title><br />
+			<input type="url" name="link" /><br /><br />
 			
 			<button type="submit">Create post</button>
 		</form>
@@ -26,14 +26,14 @@
 				
 				var data={
 					title:$('form#create input[name=title]').val(),
-					content:$('form#create textarea[name=content]').val(),
+					description:$('form#create textarea[name=description]').val(),
 					date:$('form#create input[name=date]').val(),
-					img:$('form#create input[name=img]').val()
+					link:$('form#create input[name=link]').val()
 				};
 				console.log(data);
 				$.ajax({
 					type:'POST',
-					url:'https://nku-ase200-1.herokuapp.com/API/posts.php',
+					url:'https://patrick-murrell-ase-220-final.herokuapp.com/API/posts.php',
 					data:data,
 					success: function(output, status, xhr) { 
 						if(output.status==1){

@@ -6,15 +6,14 @@
 			<label>Title</title><br />
 			<input type="text" name="title" value="" /><br /><br />
 			
-			<label>Content</title><br />
-			<textarea name="content"></textarea><br /><br />
-			
+			<label>Description</title><br />
+			<textarea name="description"></textarea><br /><br />
 			
 			<label>Date</title><br />
 			<input type="datetime-local" name="date" value=""/><br /><br />
 			
-			<label>Image</title><br />
-			<input type="url" name="img" value="" /><br /><br />
+			<label>Image Link</title><br />
+			<input type="url" name="link" value="" /><br /><br />
 			
 			<label>Author ID</title><br />
 			<input type="number" name="user_ID" value="" /><br /><br />
@@ -24,13 +23,13 @@
 		<script src="assets/jquery-3.5.1.min.js"></script>
 		<script src="assets/app.js"></script>
 		<script>
-			$.getJSON('https://nku-ase200-1.herokuapp.com/API/posts.php?id='+findGetParameter('id'),function(data){
+			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/posts.php?id='+findGetParameter('id'),function(data){
 				if(data.title==null) window.location.href='index.html';
 				$('#edit input[name=title]').val(data.title);
 				$('#edit input[name=date]').val(data.date);
 				$('#edit input[name=user_ID]').val(data.user_ID);
-				$('#edit input[name=img]').val(data.img);
-				$('#edit textarea[name=content]').val(data.content);
+				$('#edit input[name=link]').val(data.link);
+				$('#edit textarea[name=description]').val(data.description);
 				if(data.manage==0) window.location.href='index.html';
 			});
 			$(document).on('submit','#edit',function(e){
@@ -41,14 +40,14 @@
 					ID:findGetParameter('id'),
 					title:$('form#edit input[name=title]').val(),
 					user_ID:$('form#edit input[name=user_ID]').val(),
-					content:$('form#edit textarea[name=content]').val(),
+					description:$('form#edit textarea[name=description]').val(),
 					date:$('form#edit input[name=date]').val(),
-					img:$('form#edit input[name=img]').val()
+					link:$('form#edit input[name=link]').val()
 				};
 				console.log(data);
 				$.ajax({
 					type:'PUT',
-					url:'https://nku-ase200-1.herokuapp.com/API/posts.php',
+					url:'https://patrick-murrell-ase-220-final.herokuapp.com/API/posts.php',
 					data:data,
 					success: function(output, status, xhr) { 
 						if(output.status==1){

@@ -18,7 +18,7 @@ require('lib_session.php');
 	<?php if(isset($_SESSION['user/ID'])){ ?>
 	<a href="auth.php?action=signout">Sign out</a>
 	<?php }else{ ?>
-	<a href="auth.php">Sign in/up</a>
+	<a href="auth.html">Sign in/up</a>
 	<?php } ?>
     <!-- Optional JavaScript; choose one of the two! -->
 

@@ -1,8 +1,8 @@
 <?php
 $host = 'us-cdbr-east-03.cleardb.com';
-$db = 'heroku_9eb215364a0d3c5';
-$user = 'bc0f8051ee1201';
-$pass = '774bc028';
+$db = 'heroku_acf34b15d28d53a';
+$user = 'b4c2f5a86ce435';
+$pass = 'a00c758d';
 $charset = 'utf8';
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $opt = [
