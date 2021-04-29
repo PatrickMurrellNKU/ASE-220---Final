@@ -79,6 +79,7 @@
 					url:'https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php',
 					data:data,
 					success: function(output, status, xhr) { 
+						console.log(output.status)
 						if(output.status==1){
 							$('form#signin .alert').removeClass('alert-danger').addClass('alert-success').removeClass('d-none');
 							$('form#signin .alert').text(output.message);
