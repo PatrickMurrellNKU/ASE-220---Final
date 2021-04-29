@@ -13,20 +13,27 @@
 		</div>
 		<script src="assets/jquery-3.5.1.min.js"></script>
 		<script>
-			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/posts.php',function(data){
-				$('#posts').append('<div class="row">');
-				$('#posts').append('<div class="col-xs-6">');
-					for(i=0;i<data.length;i++){
-						$('#posts').append('<div><h3>'+data[i].title+'</h3><a href="posts_detail.html?id='+data[i].ID+'"><img src="'+data[i].link+'" width=300></a></div>');
-					}
-				$('#posts').append('</div>');
-			});
+			var userID = -1;
 			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php',function(data){
 				console.log(data);
 				if(data.message=='The user is already logged.'){
 					$('#signout').text("Sign Out");
+					userID = data.user_ID;
 				}
 			});
+			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/posts.php',function(data){
+				console.log(data);
+				$('#posts').append('<div class="row">');
+				$('#posts').append('<div class="col-xs-6">');
+					for(i=0;i<data.length;i++){						
+						$('#posts').append('<div><h3>'+data[i].title+'</h3><a href="posts_detail.html?id='+data[i].ID+'"><img src="'+data[i].link+'" width=300></a></div>');
+						if(userID == data.user_ID){
+							console.log(userID);
+						}
+					}
+				$('#posts').append('</div>');
+			});
+			
 		</script>
 		</div>
 	</body>

@@ -5,7 +5,9 @@ if(isset($_GET['action']) && $_GET['action']=='signout' && isset($_SESSION['user
 	session_destroy();
 	die(json_encode(['status'=>1,'message'=>'You have been signed out']));
 }
-if(isset($_SESSION['user/ID'])) die(json_encode(['status'=>-1,'message'=>'The user is already logged.']));
+if(isset($_SESSION['user/ID'])) {
+	die(json_encode(['status'=>-1,'message'=>'The user is already logged.','user_ID'=>$_SESSION['user/ID']]));
+}
 
 if(count($_POST)>0){
 	switch($_POST['action']){
@@ -41,6 +43,7 @@ if(count($_POST)>0){
 	// }
 // }	
 die(json_encode(['status'=>-1,'message'=>'This route is invalid']));
+
 
 
 function signin($email,$password){
