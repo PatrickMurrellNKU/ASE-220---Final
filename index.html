@@ -7,8 +7,11 @@
 	<body>
 		<div class="container">
 		<h1>The Art Market</h1>
-		<h3><a href="auth.html">Sign in/up</a></h3>
-		<h3><a id="signout" href="https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php?action=signout"></a><h3></h3>
+		<h3>
+			<a href="auth.html">Sign in/up</a>
+			<a id="signout" href="https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php?action=signout"></a>
+			<a id="administer" href="https://patrick-murrell-ase-220-final.herokuapp.com"></a>
+		</h3>
 		<div id="posts">
 		</div>
 		<script src="assets/jquery-3.5.1.min.js"></script>
@@ -29,7 +32,7 @@
 				$('#posts').append('<div class="col-xs-6">');
 					for(i=0;i<data.length;i++){						
 						$('#posts').append('<div><h3>'+data[i].title+'</h3><a href="posts_detail.html?id='+data[i].ID+'"><img src="'+data[i].link+'" width=300></a></div>');
-						console.log("userID "+ userID+ " data.user_ID "+ data[i].user_ID)
+						console.log("userID "+ userID+ " data.user_ID "+ data[i].user_ID);
 						if(userID == data[i].user_ID || isAdmin){
 							$('#posts').append('<div><a href="posts_edit.html?id='+data[i].ID+'">edit post</a><div>');	
 						}

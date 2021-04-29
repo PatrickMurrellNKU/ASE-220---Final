@@ -6,7 +6,7 @@ if(isset($_GET['action']) && $_GET['action']=='signout' && isset($_SESSION['user
 	die(json_encode(['status'=>1,'message'=>'You have been signed out']));
 }
 if(isset($_SESSION['user/ID'])) {
-	die(json_encode(['status'=>-1,'message'=>'The user is already logged.','user_ID'=>$_SESSION['user/ID'],'is_admin'=>$_SESSION['user/is_admin']]));
+	die(json_encode(['status'=>-1,'message'=>'The user is already logged.','user_ID'=>$_SESSION['user/ID'],'is_admin'=>$_SESSION['user/is_admin']));
 }
 
 if(count($_POST)>0){
