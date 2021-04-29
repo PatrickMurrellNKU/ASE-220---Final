@@ -6,7 +6,8 @@ if(isset($_GET['action']) && $_GET['action']=='signout' && isset($_SESSION['user
 	die(json_encode(['status'=>1,'message'=>'You have been signed out']));
 }
 if(isset($_SESSION['user/ID'])) {
-die(json_encode(['status'=>-1,'message'=>'The user is already logged.','user_ID'=>$_SESSION['user/ID'],'is_admin'=>$_SESSION['user/is_admin']/*,'firstname'=>$_SESSION['user/firstname'],'lastname'=>$_SESSION['user/lastname']*/));
+	die(json_encode(['status'=>-1,'message'=>'The user is already logged.']));
+	die(json_encode(['status'=>-1,'message'=>'The user is already logged.','user_ID'=>$_SESSION['user/ID'],'is_admin'=>$_SESSION['user/is_admin']/*,'firstname'=>$_SESSION['user/firstname'],'lastname'=>$_SESSION['user/lastname']*/));
 }
 
 if(count($_POST)>0){
@@ -17,7 +18,6 @@ if(count($_POST)>0){
 		case 'signup':
 			signup($POST['firstname'],$POST['lastname'],$_POST['email'],$_POST['password']);
 			break;
-		
 	}
 }
 // switch($_SERVER['REQUEST_METHOD']){
