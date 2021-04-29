@@ -18,6 +18,20 @@
 		</form>
 		<script src="assets/jquery-3.5.1.min.js"></script>
 		<script>
+			var userID = -1;
+			var isAdmin = false;
+			var firstname = "";
+			var lastname = "";
+			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php',function(data){
+				console.log(data);
+				if(data.message=='The user is already logged.'){
+					$('#signout').text("Sign Out");
+					userID = data.user_ID;
+					isAdmin = data.is_admin == 1;
+					firstname = data.firstname;
+					lastname = data.lastname;
+				}
+			});
 			$(document).on('submit','#create',function(e){
 				//tell the browser to ignore the default event handler
 				e.preventDefault();
@@ -26,6 +40,8 @@
 					title:$('form#create input[name=title]').val(),
 					description:$('form#create textarea[name=description]').val(),
 					link:$('form#create input[name=link]').val(),
+					firstname:firstname,
+					lastname:lastname
 				};
 				console.log(data);
 				$.ajax({
