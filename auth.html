@@ -109,9 +109,7 @@
 					success: function(output, status, xhr) {
 						console.log(output,status,xhr); 
 						if(output.status==1){
-							$('form#signup .alert').removeClass('alert-danger').addClass('alert-success').removeClass('d-none');
-							$('form#signup .alert').text(output.message);
-							//window.location.href="https://patrick-murrell-ase-220-final.herokuapp.com";
+							window.location.href="https://patrick-murrell-ase-220-final.herokuapp.com";
 						}else{
 							$('form#signup .alert').addClass('alert-danger').removeClass('d-none');
 							$('form#signup .alert').text(output.message);

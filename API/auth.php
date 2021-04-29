@@ -82,18 +82,16 @@ function signin($email,$password){
 
 function signup($firstname,$lastname,$email,$password){
 	require(__DIR__.'/lib_db.php');
-	die(json_encode(['status'=>1,'firstname'=>$firstname,'lastname'=>$lastname]));
 	// Check if they already have an account
 	$query=$pdo->prepare('SELECT ID FROM users WHERE email=?');
 	$query->execute([$email]);
 	if($query->rowCount()>0){
-		echo 'The user already exists. Please, sign in.';
-		return;
+		die(json_encode(['status'=>-1,'message'=>'account already exists']));
 	}
 	//Add the user to the database
 	$query=$pdo->prepare('INSERT INTO users(firstname,lastname,email,password) VALUES(?,?,?,?)');
 	$query->execute([$firstname,$lastname,$email,password_hash($password, PASSWORD_DEFAULT)]);
 	echo 'Your account has been created. Please, sign in.';
-	die(json_encode(['status'=>1]));
+	die(json_encode(['status'=>1,'firstname'=>$firstname,'lastname'=>$lastname]));
 	//Show a message
 }
