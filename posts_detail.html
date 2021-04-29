@@ -11,6 +11,7 @@
 			<h1 id="title"></h1>
 			<p id="author"></p>
 			<p id="description"></p>
+			<div id="link"></div>
 			<a id="btn-edit" class="d-none manage" href="#">Edit this post</a>
 			<br />
 			<button id="btn-delete" class="d-none manage">Delete this post</button>
@@ -20,9 +21,12 @@
 		<script>
 			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/posts.php?id='+findGetParameter('id'),function(data){
 				if(data.title==null) window.location.href='index.html';
+				console.log(data.current_bid);
+				
 				$('#title').text(data.title);
-				$('#author').text("Published by: "+data.user_ID);
+				$('#author').text("Published by: "+data.user_firstname+" "+data.user_lastname);
 				$('#description').text(data.description);
+				$('#link').append('<img src="'+data.link+'" width=500>');
 				if(data.manage==1){
 					$('.manage').removeClass('d-none');
 					$('#btn-edit').attr('href','posts_edit.html?id='+findGetParameter('id'));
