@@ -9,8 +9,11 @@
 		<h1>The Art Market</h1>
 		<h3>
 			<a href="auth.html">Sign in/up</a>
+			&nbsp;&nbsp;&nbsp;
 			<a id="signout" href="https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php?action=signout"></a>
-			<a id="administer" href="https://patrick-murrell-ase-220-final.herokuapp.com"></a>
+			&nbsp;&nbsp;&nbsp;
+			<a id="createpost" href="https://patrick-murrell-ase-220-final.herokuapp.com/API/posts_create.html"></a>
+			&nbsp;&nbsp;&nbsp;<a id="administer" href="https://patrick-murrell-ase-220-final.herokuapp.com"></a>
 		</h3>
 		<div id="posts">
 		</div>
@@ -22,6 +25,7 @@
 				console.log(data);
 				if(data.message=='The user is already logged.'){
 					$('#signout').text("Sign Out");
+					$('#createpost').text("Create Post");
 					userID = data.user_ID;
 					isAdmin = data.is_admin == 1;
 				}
