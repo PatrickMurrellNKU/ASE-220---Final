@@ -87,11 +87,12 @@ function signup($firstname,$lastname,$email,$password){
 	$query->execute([$email]);
 	if($query->rowCount()>0){
 		die(json_encode(['status'=>-1,'message'=>'account already exists']));
+	}else{
+		//Add the user to the database
+		$query=$pdo->prepare('INSERT INTO users(firstname,lastname,email,password) VALUES(?,?,?,?)');
+		$query->execute([$firstname,$lastname,$email,password_hash($password, PASSWORD_DEFAULT)]);
+		die(json_encode(['status'=>1,'message'=>'Your account has been created.']));
+		//Show a message
 	}
-	//Add the user to the database
-	$query=$pdo->prepare('INSERT INTO users(firstname,lastname,email,password) VALUES(?,?,?,?)');
-	$query->execute([$firstname,$lastname,$email,password_hash($password, PASSWORD_DEFAULT)]);
-	echo 'Your account has been created. Please, sign in.';
-	die(json_encode(['status'=>1,'firstname'=>$firstname,'lastname'=>$lastname]));
-	//Show a message
+	
 }
