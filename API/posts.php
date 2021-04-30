@@ -49,8 +49,8 @@ function create($pdo){
 
 function edit($pdo,$_PUT){
 	if(count($_PUT)>0){
-		$stmt = $pdo->prepare('UPDATE post SET title = ?, description = ?, link = ?, user_ID =? WHERE post.ID =?');
-		$stmt->execute([$_PUT['title'],$_PUT['description'],$_PUT['link'],$_PUT['user_ID'],$_PUT['ID']]);
+		$stmt = $pdo->prepare('UPDATE post SET title = ?, description = ?, link = ?, user_ID =?, current_bid = ? WHERE post.ID =?');
+		$stmt->execute([$_PUT['title'],$_PUT['description'],$_PUT['link'],$_PUT['user_ID'],$_PUT['current_bid'],$_PUT['ID']]);
 		die(json_encode(['status'=>1,'message'=>'Your data have been saved']));
 	}
 	die(json_encode(['status'=>-1,'message'=>'Your data were not saved']));

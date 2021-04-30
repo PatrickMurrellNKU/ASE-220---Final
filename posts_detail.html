@@ -12,6 +12,7 @@
 			<p id="author"></p>
 			<p id="description"></p>
 			<p id="current_bid"></p>
+			<button id="btn-bet" class="d-none manage" href="#">Raise a bet by $100</button>
 			<div id="link"></div>
 			<br>
 			<button id="btn-edit" class="d-none manage" href="#">Edit this post</button>
@@ -21,15 +22,27 @@
 		<script src="assets/jquery-3.5.1.min.js"></script>
 		<script src="assets/app.js"></script>
 		<script>
+			var userID = -1;
+			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php',function(data){
+				console.log(data);
+				if(data.message=='The user is already logged.'){
+					userID = data.user_ID;
+				}
+			});
 			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/posts.php?id='+findGetParameter('id'),function(data){
 				if(data.title==null) window.location.href='https://patrick-murrell-ase-220-final.herokuapp.com';
 				console.log(data.current_bid);
 				
 				$('#title').text(data.title);
-				$('#author').text("Published by: "+data.user_firstname+" "+data.user_lastname);
+				$('#author').text("Published by: "+data.firstname+" "+data.lastname);
 				$('#description').text(data.description);
 				$('#current_bid').text("Current Bid: $"+data.current_bid);
 				$('#link').append('<img src="'+data.link+'" width=500>');
+
+				if(userID != -1){
+					$('.manage').removeClass('d-none');
+				}
+
 				if(data.manage==1){
 					$('.manage').removeClass('d-none');
 				}
@@ -38,6 +51,29 @@
 			$(document).on('click','#btn-edit',function(){
 				window.location.href='https://patrick-murrell-ase-220-final.herokuapp.com/posts_edit.html?id='+findGetParameter('id');
 			});
+			$(document).on('click','#btn-bet',function(){
+				$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/posts.php?id='+findGetParameter('id'),function(data){
+					var nextBid = data.current_bid + 100;
+					data={
+						ID:data.ID,
+						title:data.title,
+						description:data.description,
+						link:data.link,
+						user_ID:data.user_ID,
+						current_bid:nextBid
+					};
+					$.ajax({
+					type:'PUT',
+					url:'https://patrick-murrell-ase-220-final.herokuapp.com/API/posts.php',
+					data:data,
+					success: function(output, status, xhr) { 
+						window.location.reload();
+					}
+				});
+
+				});
+			});
+
 			$(document).on('click','#btn-delete',function(){
 				$.ajax({
 					type:'DELETE',
