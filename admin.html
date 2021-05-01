@@ -20,7 +20,7 @@
 						$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php?action=admin',function(data){
 							for(i=0;i<data.length;i++){
 								$('#users').append('<div class="row">');
-								$('#users').append('<div><hr><nobr>'+i+',ID: '+data[i].ID+',Admin: '+data[i].is_admin+',email: '+data[i].email+',password: '+data[i].password+',firstname: '+data[i].firstname+',lastname: '+data[i].lastname+' <a href="https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php?action=deleteUser?id="'+data[i].ID+'>delete</a></nobr><hr></div>');
+								$('#users').append('<div><hr><nobr>'+i+',ID: '+data[i].ID+',Admin: '+data[i].is_admin+',email: '+data[i].email+',password: '+data[i].password+',firstname: '+data[i].firstname+',lastname: '+data[i].lastname+' <a href="https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php?action=deleteUser?id='+data[i].ID+'">delete</a></nobr><hr></div>');
 								$('#users').append('</div>');	
 							}
 						});
