@@ -1,4 +1,5 @@
 <?php
+require(__DIR__.'/lib_db.php');
 require(__DIR__.'/lib_session.php');
 header('Content-type: application/json');
 if(isset($_GET['action']) && $_GET['action']=='signout' && isset($_SESSION['user/ID'])){
@@ -7,14 +8,12 @@ if(isset($_GET['action']) && $_GET['action']=='signout' && isset($_SESSION['user
 }
 
 if(isset($_GET['action']) && $_GET['action']=='admin' && isset($_SESSION['user/ID'] && $_SESSION['user/is_admin'] == 1)){
-	require(__DIR__.'/lib_db.php');
 	$stmt = $pdo->prepare('SELECT ID,is_admin,email,password,firstname,lastname FROM users');
 	$stmt->execute([]);
 	die(json_encode($stmt->fetchAll()));
 }
 
 if(isset($_GET['action']) && $_GET['action']=='deleteUser' && isset($_SESSION['user/ID'] && $_SESSION['user/is_admin'] == 1)){
-	require(__DIR__.'/lib_db.php');
 	$stmt = $pdo->prepare('DELETE FROM users WHERE ID=?');
 	$stmt->execute([$_GET['id']]);
 	die(json_encode(['status'=>1,'message'=>'The user has been deleted']));
@@ -74,7 +73,7 @@ die(json_encode(['status'=>-1,'message'=>'This route is invalid']));
 
 
 function signin($email,$password){
-	require(__DIR__.'/lib_db.php');
+	//require(__DIR__.'/lib_db.php');
 	// Check if the user is in the database
 	$query=$pdo->prepare('SELECT ID,password,is_admin,firstname,lastname FROM users WHERE email=?');
 	$query->execute([$email]);
@@ -95,7 +94,7 @@ function signin($email,$password){
 }
 
 function signup($firstname,$lastname,$email,$password){
-	require(__DIR__.'/lib_db.php');
+	//require(__DIR__.'/lib_db.php');
 	// Check if they already have an account
 	$query=$pdo->prepare('SELECT ID FROM users WHERE email=?');
 	$query->execute([$email]);
