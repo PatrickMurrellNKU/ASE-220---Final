@@ -60,7 +60,11 @@ function delete($pdo,$id){
 	$stmt = $pdo->prepare('SELECT * FROM post WHERE ID=?');
 	$stmt->execute([$id]);
 	$post=$stmt->fetch();
-	if(!isset($_SESSION['user/ID']) || $post['user_ID']!=$_SESSION['user/ID']) die(json_encode(['status'=>-1,'message'=>'You don\'t have the rights for this action']));
+	if($_SESSION['user/is_admin'] != 1){
+		if(!isset($_SESSION['user/ID']) || $post['user_ID']!=$_SESSION['user/ID']){
+			die(json_encode(['status'=>-1,'message'=>'You don\'t have the rights for this action']));
+		}
+	}
 	$stmt = $pdo->prepare('DELETE FROM post WHERE ID=?');
 	$stmt->execute([$id]);
 	die(json_encode(['status'=>1,'message'=>'The post has been deleted']));
