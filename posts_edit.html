@@ -5,18 +5,22 @@
 	</head>
 	<body>
 		<div class="container">
-		<form id="edit" method="POST">
-			<label>Title</title><br />
-			<input type="text" name="title" value="" /><br /><br />
-			
-			<label>Description</title><br />
-			<textarea name="description"></textarea><br /><br />
-			
-			<label>Image Link</title><br />
-			<input type="url" name="link" value="" /><br /><br />
+			<div class="row">
+				<div class="col-xs-6">
+					<form id="edit" method="POST">
+						<label>Title</title><br />
+						<input type="text" name="title" value="" /><br /><br />
+						
+						<label>Description</title><br />
+						<textarea name="description"></textarea><br /><br />
+						
+						<label>Image Link</title><br />
+						<input type="url" name="link" value="" /><br /><br />
 
-			<button type="submit">Edit post</button>
-		</form>
+						<button type="submit">Edit post</button>
+					</form>
+				</div>
+			</div>	
 		</div>
 		<script src="assets/jquery-3.5.1.min.js"></script>
 		<script src="assets/app.js"></script>
