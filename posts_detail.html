@@ -12,12 +12,12 @@
 			<p id="author"></p>
 			<p id="description"></p>
 			<p id="current_bid"></p>
-			<button id="btn-bet" class="d-none bet" href="#">Raise a bet by $100</button><br>
+			<button id="btn-bet" class="d-none bet" href="#">Raise a bet by $100</button><br><br>
 			<div id="link"></div>
 			<br>
 			<button id="btn-edit" class="d-none manage" href="#">Edit this post</button>
 			&nbsp;
-			<button id="btn-delete" class="d-none manage">Delete this post</button>
+			<button id="btn-delete" class="d-none manage">Delete this post</button><br><br>
 		</div>
 		<script src="assets/jquery-3.5.1.min.js"></script>
 		<script src="assets/app.js"></script>
@@ -33,7 +33,7 @@
 				if(data.title==null) window.location.href='https://patrick-murrell-ase-220-final.herokuapp.com';
 				console.log("data.firstname: "+data.firstname);
 				console.log("data.lastname: "+data.lastname);
-				
+
 				$('#title').text(data.title);
 				$('#author').text("Published by: "+data.firstname+" "+data.lastname);
 				$('#description').text(data.description);
