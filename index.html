@@ -37,10 +37,8 @@
 					for(i=0;i<data.length;i++){						
 						$('#posts').append('<div><h3>'+data[i].title+'</h3><a href="posts_detail.html?id='+data[i].ID+'"><img src="'+data[i].link+'" width=300></a></div>');
 						console.log("userID "+ userID+ " data.user_ID "+ data[i].user_ID);
-						if(userID == data[i].user_ID || isAdmin){
-							$('#posts').append('<div><a href="posts_edit.html?id='+data[i].ID+'">edit post</a><div>');	
-						}
 					}
+				$('#posts').append('</div>');
 				$('#posts').append('</div>');
 			});
 		</script>
