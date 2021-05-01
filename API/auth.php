@@ -6,11 +6,18 @@ if(isset($_GET['action']) && $_GET['action']=='signout' && isset($_SESSION['user
 	die(json_encode(['status'=>1,'message'=>'You have been signed out']));
 }
 
-if(isset($_GET['action']) && $_GET['action']=='admin' && isset($_SESSION['user/ID'])){
+if(isset($_GET['action']) && $_GET['action']=='admin' && isset($_SESSION['user/ID'] && $_SESSION['user/is_admin'] == 1)){
 	require(__DIR__.'/lib_db.php');
 	$stmt = $pdo->prepare('SELECT ID,is_admin,email,password,firstname,lastname FROM users');
 	$stmt->execute([]);
 	die(json_encode($stmt->fetchAll()));
+}
+
+if(isset($_GET['action']) && $_GET['action']=='deleteUser' && isset($_SESSION['user/ID'] && $_SESSION['user/is_admin'] == 1)){
+	require(__DIR__.'/lib_db.php');
+	$stmt = $pdo->prepare('DELETE FROM users WHERE ID=?');
+	$stmt->execute([$_GET['id']]);
+	die(json_encode(['status'=>1,'message'=>'The user has been deleted']));
 }
 
 if(isset($_SESSION['user/ID'])) {
