@@ -10,8 +10,8 @@ if(isset($_GET['action']) && $_GET['action']=='admin' && isset($_SESSION['user/I
 	$stmt = $pdo->prepare('SELECT * FROM users');
 	$stmt->execute();
 	$post=$stmt->fetch();
-	if(isset($_SESSION['user/ID']) && ($post['user_ID']==$_SESSION['user/ID'] || $_SESSION['user/is_admin']==1)) $post['manage']=1;
-	else $post['manage']=0;
+	// if(isset($_SESSION['user/ID']) && ($post['user_ID']==$_SESSION['user/ID'] || $_SESSION['user/is_admin']==1)) $post['manage']=1;
+	// else $post['manage']=0;
 	die(json_encode($post));
 }
 
