@@ -7,6 +7,7 @@ if(isset($_GET['action']) && $_GET['action']=='signout' && isset($_SESSION['user
 }
 
 if(isset($_GET['action']) && $_GET['action']=='admin' && isset($_SESSION['user/ID'])){
+	require(__DIR__.'/lib_db.php');
 	$stmt = $pdo->prepare('SELECT ID,is_admin,email,password,firstname,lastname FROM users');
 	$stmt->execute([]);
 	die(json_encode($stmt->fetchAll()));
