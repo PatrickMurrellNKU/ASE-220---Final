@@ -13,13 +13,11 @@ if(isset($_GET['action']) && $_GET['action']=='admin' && isset($_SESSION['user/I
 	die(json_encode($stmt->fetchAll()));
 }
 
-$url=$_SERVER['QUERY_STRING'];
-$url_components = parse_url($url);
-parse_str($url_components['query'], $params);
-if($params['action']=='deleteuser' && isset($_SESSION['user/ID'])){
+
+if($_GET['action']=='deleteuser' && isset($_SESSION['user/ID'])){
 	require(__DIR__.'/lib_db.php');
 	$stmt = $pdo->prepare('DELETE FROM users WHERE ID=?');
-	$stmt->execute([$params['id']]);
+	$stmt->execute([$_GET['id']]);
 	die(json_encode($stmt->fetchAll()));
 }
 
@@ -29,9 +27,7 @@ if(isset($_SESSION['user/ID'])) {
 	'is_admin'=>$_SESSION['user/is_admin'],
 	'firstname'=>$_SESSION['user/firstname'],
 	'is_admin'=>$_SESSION['user/is_admin'],
-	'lastname'=>$_SESSION['user/lastname'],
-	'action'=>$params['action'],
-	'id'=>$params['id']
+	'lastname'=>$_SESSION['user/lastname']
 	]));
 }
 
