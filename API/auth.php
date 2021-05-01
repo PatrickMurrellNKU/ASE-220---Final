@@ -13,7 +13,7 @@ if(isset($_GET['action']) && $_GET['action']=='admin' && isset($_SESSION['user/I
 	die(json_encode($stmt->fetchAll()));
 }
 
-$url=$_SERVER['REQUEST_URI'];
+$url=$_SERVER['QUERY_STRING']
 $url_components = parse_url($url);
 parse_str($url_components['query'], $params);
 if($params['action']=='deleteuser' && isset($_SESSION['user/ID'])){
