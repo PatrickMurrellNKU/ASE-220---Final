@@ -19,15 +19,15 @@
 		</div>
 		<script src="assets/jquery-3.5.1.min.js"></script>
 		<script>
-			var isAdmin = false;
 			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php',function(data){
 				console.log(data);
 				if(data.message=='The user is already logged.'){
-					isAdmin = data.is_admin == 1;
+					if(data.is_admin == 1){
+						
+					}else{
+						window.location.href="https://patrick-murrell-ase-220-final.herokuapp.com";
+					}
 				}
-			});
-			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php?action=admin',function(data){
-				console.log(data);
 			});
 		</script>
 		</div>
