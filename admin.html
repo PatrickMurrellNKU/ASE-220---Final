@@ -17,6 +17,7 @@
 				console.log(data);
 				if(data.message=='The user is already logged.'){
 					if(data.is_admin == 1){
+						console.log("adminMode")
 						$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php?action=admin',function(data){
 							for(i=0;i<data.length;i++){
 								$('#users').append('<div class="row">');
@@ -27,6 +28,8 @@
 					}else{
 						window.location.href="https://patrick-murrell-ase-220-final.herokuapp.com";
 					}
+				}else{
+						window.location.href="https://patrick-murrell-ase-220-final.herokuapp.com";
 				}
 			});
 		</script>
