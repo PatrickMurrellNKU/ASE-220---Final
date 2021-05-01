@@ -14,11 +14,12 @@ if(isset($_GET['action']) && $_GET['action']=='admin' && isset($_SESSION['user/I
 }
 
 if(isset($_GET['action']) && $_GET['action']=='deleteuser' && isset($_SESSION['user/ID'])){
-	require(__DIR__.'/lib_db.php');
-	$stmt = $pdo->prepare('DELETE FROM users WHERE ID=?');
-	die(json_encode(['status'=>1,'message'=>$_GET['id']]));
-	$stmt->execute([$_GET['id']]);
-	die(json_encode($stmt->fetchAll()));
+	 die(json_encode(['status'=>1,'message'=>'Test']));
+	// require(__DIR__.'/lib_db.php');
+	// $stmt = $pdo->prepare('DELETE FROM users WHERE ID=?');
+	// die(json_encode(['status'=>1,'message'=>$_GET['id']]));
+	// $stmt->execute([$_GET['id']]);
+	// die(json_encode($stmt->fetchAll()));
 }
 
 if(isset($_SESSION['user/ID'])) {
@@ -27,9 +28,21 @@ if(isset($_SESSION['user/ID'])) {
 	'is_admin'=>$_SESSION['user/is_admin'],
 	'firstname'=>$_SESSION['user/firstname'],
 	'is_admin'=>$_SESSION['user/is_admin'],
-	'lastname'=>$_SESSION['user/lastname']
+	'lastname'=>$_SESSION['user/lastname'],
+	'action'=>$_GET['action']
 	]));
 }
+
+
+// if(isset($_SESSION['user/ID'])) {
+// 	die(json_encode(['status'=>1,'message'=>'The user is already logged.',
+// 	'user_ID'=>$_SESSION['user/ID'],
+// 	'is_admin'=>$_SESSION['user/is_admin'],
+// 	'firstname'=>$_SESSION['user/firstname'],
+// 	'is_admin'=>$_SESSION['user/is_admin'],
+// 	'lastname'=>$_SESSION['user/lastname']
+// 	]));
+// }
 
 if(count($_POST)>0){
 	switch($_POST['action']){
