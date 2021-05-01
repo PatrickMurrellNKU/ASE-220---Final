@@ -29,7 +29,8 @@ if(isset($_SESSION['user/ID'])) {
 	'firstname'=>$_SESSION['user/firstname'],
 	'is_admin'=>$_SESSION['user/is_admin'],
 	'lastname'=>$_SESSION['user/lastname'],
-	'action'=>$_GET['action']
+	'action'=>$params['action'],
+	'id'=>$params['id']
 	]));
 }
 
