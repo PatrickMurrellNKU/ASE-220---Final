@@ -6,14 +6,14 @@ if(isset($_GET['action']) && $_GET['action']=='signout' && isset($_SESSION['user
 	die(json_encode(['status'=>1,'message'=>'You have been signed out']));
 }
 
-if(isset($_GET['action']) && $_GET['action']=='admin' && isset($_SESSION['user/ID']){
-	$stmt = $pdo->prepare('SELECT ID,is_admin,email,password,firstname,lastname FROM users WHERE ID=?');
-	$stmt->execute([$_GET['id']]);
-	$post=$stmt->fetch();
-	if(isset($_SESSION['user/ID']) && ($post['user_ID']==$_SESSION['user/ID'] || $_SESSION['user/is_admin']==1)) $post['manage']=1;
-	else $post['manage']=0;
-	die(json_encode($post));
-}
+// if(isset($_GET['action']) && $_GET['action']=='admin' && isset($_SESSION['user/ID']){
+// 	$stmt = $pdo->prepare('SELECT ID,is_admin,email,password,firstname,lastname FROM users WHERE ID=?');
+// 	$stmt->execute([$_GET['id']]);
+// 	$post=$stmt->fetch();
+// 	if(isset($_SESSION['user/ID']) && ($post['user_ID']==$_SESSION['user/ID'] || $_SESSION['user/is_admin']==1)) $post['manage']=1;
+// 	else $post['manage']=0;
+// 	die(json_encode($post));
+// }
 
 if(isset($_SESSION['user/ID'])) {
 	die(json_encode(['status'=>1,'message'=>'The user is already logged.',
