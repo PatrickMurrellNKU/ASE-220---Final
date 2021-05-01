@@ -6,14 +6,14 @@ if(isset($_GET['action']) && $_GET['action']=='signout' && isset($_SESSION['user
 	die(json_encode(['status'=>1,'message'=>'You have been signed out']));
 }
 
-if(isset($_GET['action']) && $_GET['action']=='admin' && isset($_SESSION['user/ID']) && isset($_SESSION['user/admin']) && $_SESSION['user/admin'] == 1){
+if(isset($_GET['action']) && $_GET['action']=='admin' && isset($_SESSION['user/ID'])){
 	require(__DIR__.'/lib_db.php');
 	$stmt = $pdo->prepare('SELECT ID,is_admin,email,password,firstname,lastname FROM users');
 	$stmt->execute([]);
 	die(json_encode($stmt->fetchAll()));
 }
 
-if(isset($_GET['action']) && $_GET['action']=='deleteUser' && isset($_SESSION['user/ID']) && isset($_SESSION['user/admin']) && $_SESSION['user/admin'] == 1){
+if(isset($_GET['action']) && $_GET['action']=='deleteUser' && isset($_SESSION['user/ID'])){
 	require(__DIR__.'/lib_db.php');
 	$stmt = $pdo->prepare('DELETE FROM users WHERE ID=?');
 	$stmt->execute([$_GET['id']]);
