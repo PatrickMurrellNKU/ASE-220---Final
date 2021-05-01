@@ -6,7 +6,7 @@ if(isset($_GET['action']) && $_GET['action']=='signout' && isset($_SESSION['user
 	die(json_encode(['status'=>1,'message'=>'You have been signed out']));
 }
 
-if(isset($_GET['action']) && $_GET['action']=='admin' && isset($_SESSION['user/ID'])){
+if(isset($_GET['action']) && $_GET['action']=='admin' && isset($_SESSION['user/ID']) && isset($_SESSION['user/admin']) && $_SESSION['user/admin'] == 1){
 	require(__DIR__.'/lib_db.php');
 	$stmt = $pdo->prepare('SELECT ID,is_admin,email,password,firstname,lastname FROM users');
 	$stmt->execute([]);
