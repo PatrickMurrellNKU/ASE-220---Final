@@ -22,7 +22,7 @@
 							console.log("data: "+data[0].ID+" "+data.length);
 							for(i=0;i<data.length;i++){
 								$('#users').append('<div class="row">');
-								$('#users').append('<div><hr><nobr>'+i+',ID: '+data[i].ID+',Admin: '+data[i].is_admin+',email: '+data[i].email+',firstname: '+data[i].firstname+',lastname: '+data[i].lastname+' <a href="https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php?id='+data[i].ID+'?action=deleteuser">delete</a></nobr><hr></div>');
+								$('#users').append('<div><hr><nobr>'+i+',ID: '+data[i].ID+',Admin: '+data[i].is_admin+',email: '+data[i].email+',firstname: '+data[i].firstname+',lastname: '+data[i].lastname+' <a href="https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php?action=deleteuser?id='+data[i].ID+'">delete</a></nobr><hr></div>');
 								$('#users').append('</div>');	
 							}
 						});
