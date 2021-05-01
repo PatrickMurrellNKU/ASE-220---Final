@@ -13,37 +13,21 @@
 			<a id="signout" href="https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php?action=signout"></a>
 			&nbsp;&nbsp;&nbsp;
 			<a id="createpost" href="https://patrick-murrell-ase-220-final.herokuapp.com/posts_create.html"></a>
-			&nbsp;&nbsp;&nbsp;
-			<a id="admin" href="https://patrick-murrell-ase-220-final.herokuapp.com/admin.html"></a>
+			&nbsp;&nbsp;&nbsp;<a id="administer" href="https://patrick-murrell-ase-220-final.herokuapp.com"></a>
 		</h3>
 		<div id="posts">
 		</div>
 		<script src="assets/jquery-3.5.1.min.js"></script>
 		<script>
-			var userID = -1;
 			var isAdmin = false;
 			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php',function(data){
 				console.log(data);
 				if(data.message=='The user is already logged.'){
-					$('#signout').text("Sign Out");
-					$('#createpost').text("Create Post");
-					userID = data.user_ID;
 					isAdmin = data.is_admin == 1;
-					if(isAdmin){
-						$('#admin').text("Administer");
-					}
 				}
 			});
-			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/posts.php',function(data){
+			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/auth.php?action=admin',function(data){
 				console.log(data);
-				$('#posts').append('<div class="row">');
-				$('#posts').append('<div class="col-xs-6">');
-					for(i=0;i<data.length;i++){						
-						$('#posts').append('<div><h3>'+data[i].title+'</h3><a href="posts_detail.html?id='+data[i].ID+'"><img src="'+data[i].link+'" width=300></a></div>');
-						console.log("userID "+ userID+ " data.user_ID "+ data[i].user_ID);
-					}
-				$('#posts').append('</div>');
-				$('#posts').append('</div>');
 			});
 		</script>
 		</div>

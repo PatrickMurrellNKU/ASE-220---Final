@@ -31,8 +31,6 @@
 			});
 			$.getJSON('https://patrick-murrell-ase-220-final.herokuapp.com/API/posts.php?id='+findGetParameter('id'),function(data){
 				if(data.title==null) window.location.href='https://patrick-murrell-ase-220-final.herokuapp.com';
-				console.log("data.firstname: "+data.firstname);
-				console.log("data.lastname: "+data.lastname);
 
 				$('#title').text(data.title);
 				$('#author').text("Published by: "+data.firstname+" "+data.lastname);
