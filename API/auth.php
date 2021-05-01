@@ -7,12 +7,9 @@ if(isset($_GET['action']) && $_GET['action']=='signout' && isset($_SESSION['user
 }
 
 if(isset($_GET['action']) && $_GET['action']=='admin' && isset($_SESSION['user/ID'])){
-	$stmt = $pdo->prepare('SELECT * FROM users');
+	$stmt = $pdo->prepare('SELECT ID,is_admin,email,password,firstname,lastname FROM users');
 	$stmt->execute([]);
-	$post=$stmt->fetchAll();
-	// if(isset($_SESSION['user/ID']) && ($post['user_ID']==$_SESSION['user/ID'] || $_SESSION['user/is_admin']==1)) $post['manage']=1;
-	// else $post['manage']=0;
-	die(json_encode(['status'=>1,'post'=>$post]));
+	die(json_encode($stmt->fetchAll()));
 }
 
 if(isset($_SESSION['user/ID'])) {
