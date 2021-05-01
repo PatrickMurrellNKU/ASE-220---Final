@@ -13,7 +13,7 @@ if(isset($_GET['action']) && $_GET['action']=='admin' && isset($_SESSION['user/I
 	die(json_encode($stmt->fetchAll()));
 }
 
-if(isset($_GET['action']) && $_GET['action']=='deleteUser' && isset($_SESSION['user/ID'])){
+if(isset($_GET['action']) && $_GET['action']=='deleteuser' && isset($_SESSION['user/ID'])){
 	require(__DIR__.'/lib_db.php');
 	$stmt = $pdo->prepare('DELETE FROM users WHERE ID=?');
 	$stmt->execute([$_GET['id']]);
