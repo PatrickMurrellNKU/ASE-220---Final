@@ -28,8 +28,6 @@
 					$('#signout').text("Sign Out");
 					userID = data.user_ID;
 					isAdmin = data.is_admin == 1;
-					firstname = data.firstname;
-					lastname = data.lastname;
 				}
 			});
 			$(document).on('submit','#create',function(e){
@@ -40,8 +38,6 @@
 					title:$('form#create input[name=title]').val(),
 					description:$('form#create textarea[name=description]').val(),
 					link:$('form#create input[name=link]').val(),
-					firstname:firstname,
-					lastname:lastname
 				};
 				console.log(data);
 				$.ajax({

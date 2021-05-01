@@ -30,7 +30,7 @@ function index($pdo){
 }
 
 function detail($pdo){
-	$stmt = $pdo->prepare('SELECT ID,title,description,link,user_ID,current_bid FROM post WHERE ID=?');
+	$stmt = $pdo->prepare('SELECT ID,title,description,link,user_ID,current_bid,firstname,lastname FROM post WHERE ID=?');
 	$stmt->execute([$_GET['id']]);
 	$post=$stmt->fetch();
 	if(isset($_SESSION['user/ID']) && ($post['user_ID']==$_SESSION['user/ID'] || $_SESSION['user/is_admin']==1)) $post['manage']=1;
@@ -41,8 +41,8 @@ function detail($pdo){
 function create($pdo){
 	if(!isset($_SESSION['user/ID'])) die(json_encode(['status'=>-1,'message'=>'This page is for registered users only. Please <a href="auth.php">Sign in</a>.']));
 	if(count($_POST)>0){
-		$stmt = $pdo->prepare('INSERT INTO post (title, description, link,user_ID,current_bid) VALUES (?,?,?,?,?)');
-		$stmt->execute([$_POST['title'],$_POST['description'],$_POST['link'],$_SESSION['user/ID'],0]);
+		$stmt = $pdo->prepare('INSERT INTO post (title, description, link,user_ID,current_bid,firstname,lastname) VALUES (?,?,?,?,?,?,?)');
+		$stmt->execute([$_POST['title'],$_POST['description'],$_POST['link'],$_SESSION['user/ID'],0,$_SESSION['user/firstname'],$_SESSION['user/lastname']]);
 		die(json_encode(['status'=>1,'message'=>'The message has been saved.']));
 	}
 }
