@@ -14,7 +14,6 @@ if(isset($_GET['action']) && $_GET['action']=='admin' && isset($_SESSION['user/I
 }
 
 if(isset($_GET['action']) && $_GET['action']=='deleteuser' && isset($_SESSION['user/ID'])){
-	 die(json_encode(['status'=>1,'message'=>'Test']));
 	// require(__DIR__.'/lib_db.php');
 	// $stmt = $pdo->prepare('DELETE FROM users WHERE ID=?');
 	// die(json_encode(['status'=>1,'message'=>$_GET['id']]));
